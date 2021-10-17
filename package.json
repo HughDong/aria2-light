@@ -15,7 +15,7 @@
   "dependencies": {
     "axios": "^0.23.0",
     "core-js": "^3.6.5",
-    "element-plus": "^1.1.0-beta.20",
+    "element-plus": "^1.1.0-beta.15",
     "sass": "^1.43.2",
     "sass-loader": "^10.1.1",
     "vue": "^3.0.0",
@@ -39,7 +39,7 @@
     "eslint-plugin-vue": "^7.0.0",
     "typescript": "~4.1.5",
     "vue-cli-plugin-electron-builder": "~2.1.1",
-    "webpack": "^4.0.0"
+    "webpack": "^4.46.0"
   },
   "eslintConfig": {
     "root": true,
