@@ -1,9 +1,10 @@
 'use strict'
 
-import { app, protocol, BrowserWindow } from 'electron'
+import { app, protocol, BrowserWindow, Menu, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 import {aria2Server} from './electron/aria2'
+import { channel } from './electron/event/event'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Scheme must be registered before the app is ready
@@ -12,15 +13,17 @@ protocol.registerSchemesAsPrivileged([
 ])
 
 async function createWindow() {
+  Menu.setApplicationMenu(null);
   // Create the browser window.
   const win = new BrowserWindow({
     width: 1200,
     height: 800,
+    frame: false,
     webPreferences: {
       
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
+      nodeIntegration: true,
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
     }
   })
@@ -37,6 +40,9 @@ async function createWindow() {
 }
 
 aria2Server.start();
+ipcMain.on(channel.CLOSE, (e)=> {
+  app.exit(0);
+});
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {

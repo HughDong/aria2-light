@@ -2,9 +2,7 @@
     <el-container>
         <!-- TODO: Light加上icon, 和aside对齐 -->
         <el-header >
-            <div class="app-name">
-                Aria-light
-            </div>
+            <Header/>
         </el-header>
         <el-container>
             <el-aside>
@@ -18,15 +16,17 @@
 </template>
 
 <script lang="ts">
-import Aside from '@/components/Aside.vue'
-import {initBackground} from '@/util/aria2'
-import {useStore} from '@/store'
+import Aside from '@/components/Aside.vue';
+import Header from '@/components/Header.vue';
+import {initBackground} from '@/util/aria2';
+import {useStore} from '@/store';
 
 
 export default {
     name: "Layout",
     components: {
-        Aside
+        Aside,
+        Header
     },
     setup() {
         const store = useStore();
@@ -43,11 +43,7 @@ export default {
     text-align: start;
     line-height: 60px;
 }
-.app-name {
-    width: 18%;
-    padding-right: 20px;
-    text-align: center;
-}
+
 .el-aside {
   background-color: #d3dce6;
   color: var(--el-text-color-primary);

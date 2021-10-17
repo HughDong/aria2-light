@@ -10,5 +10,10 @@ module.exports = {
           additionalData: `@import "~@/assets/css/variables.scss";`
         }
       }
-    }
+    },
+    pluginOptions: {
+      electronBuilder: {
+          nodeIntegration: true
+      }
+  }
   }
